@@ -10,14 +10,14 @@ import (
 )
 
 type PetStore struct {
-	Pets   map[int64]Pet
-	NextId int64
+	Pets   map[uint64]Pet
+	NextId uint64
 	Lock   sync.Mutex
 }
 
 func NewPetStore() *PetStore {
 	return &PetStore{
-		Pets:   make(map[int64]Pet),
+		Pets:   make(map[uint64]Pet),
 		NextId: 1000,
 	}
 }
@@ -26,7 +26,7 @@ func NewPetStore() *PetStore {
 // handling the failure to marshal that.
 func sendPetstoreError(w http.ResponseWriter, code int, message string) {
 	petErr := Error{
-		Code:    int32(code),
+		Code:    uint32(code),
 		Message: message,
 	}
 	w.WriteHeader(code)
@@ -95,7 +95,7 @@ func (p *PetStore) AddPet(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(pet)
 }
 
-func (p *PetStore) FindPetById(w http.ResponseWriter, r *http.Request, id int64) {
+func (p *PetStore) FindPetById(w http.ResponseWriter, r *http.Request, id uint64) {
 	p.Lock.Lock()
 	defer p.Lock.Unlock()
 
@@ -109,7 +109,7 @@ func (p *PetStore) FindPetById(w http.ResponseWriter, r *http.Request, id int64)
 	json.NewEncoder(w).Encode(pet)
 }
 
-func (p *PetStore) DeletePet(w http.ResponseWriter, r *http.Request, id int64) {
+func (p *PetStore) DeletePet(w http.ResponseWriter, r *http.Request, id uint64) {
 	p.Lock.Lock()
 	defer p.Lock.Unlock()
 

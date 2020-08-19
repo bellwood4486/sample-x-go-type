@@ -14,7 +14,7 @@ import (
 type Error struct {
 
 	// Error code
-	Code int32 `json:"code"`
+	Code uint32 `json:"code"`
 
 	// Error message
 	Message string `json:"message"`
@@ -37,7 +37,7 @@ type Pet struct {
 	// Embedded fields due to inline allOf schema
 
 	// Unique id of the pet
-	Id int64 `json:"id"`
+	Id uint64 `json:"id"`
 }
 
 // FindPetsParams defines parameters for FindPets.
@@ -47,7 +47,7 @@ type FindPetsParams struct {
 	Tags *[]string `json:"tags,omitempty"`
 
 	// maximum number of results to return
-	Limit *int32 `json:"limit,omitempty"`
+	Limit *uint32 `json:"limit,omitempty"`
 }
 
 // AddPetJSONBody defines parameters for AddPet.
@@ -66,10 +66,10 @@ type ServerInterface interface {
 	AddPet(w http.ResponseWriter, r *http.Request)
 	// Deletes a pet by ID
 	// (DELETE /pets/{id})
-	DeletePet(w http.ResponseWriter, r *http.Request, id int64)
+	DeletePet(w http.ResponseWriter, r *http.Request, id uint64)
 	// Returns a pet by ID
 	// (GET /pets/{id})
-	FindPetById(w http.ResponseWriter, r *http.Request, id int64)
+	FindPetById(w http.ResponseWriter, r *http.Request, id uint64)
 }
 
 // ServerInterfaceWrapper converts contexts to parameters.
@@ -125,7 +125,7 @@ func (siw *ServerInterfaceWrapper) DeletePet(w http.ResponseWriter, r *http.Requ
 	var err error
 
 	// ------------- Path parameter "id" -------------
-	var id int64
+	var id uint64
 
 	err = runtime.BindStyledParameter("simple", false, "id", chi.URLParam(r, "id"), &id)
 	if err != nil {
@@ -143,7 +143,7 @@ func (siw *ServerInterfaceWrapper) FindPetById(w http.ResponseWriter, r *http.Re
 	var err error
 
 	// ------------- Path parameter "id" -------------
-	var id int64
+	var id uint64
 
 	err = runtime.BindStyledParameter("simple", false, "id", chi.URLParam(r, "id"), &id)
 	if err != nil {
