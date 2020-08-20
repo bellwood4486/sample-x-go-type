@@ -2,6 +2,10 @@
 
 ## Customization
 
+`petstore-expanded.yaml` has 2 customizations.
+- int -> uint
+- `NewPet` has `custom_date` field which type is `CustomDate`.
+
 ```diff
 --- ../oapi-codegen/examples/petstore-expanded/petstore-expanded.yaml	2020-07-23 21:39:24.000000000 +0900
 +++ petstore-expanded.yaml	2020-08-21 00:49:32.000000000 +0900
