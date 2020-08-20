@@ -7,10 +7,10 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/bellwood4486/sample-x-go-type/server/api"
 	"log"
 	"net/http"
 
-	api "github.com/deepmap/oapi-codegen/examples/petstore-expanded/chi/api"
 )
 
 func main() {

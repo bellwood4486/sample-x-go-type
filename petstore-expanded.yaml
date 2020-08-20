@@ -142,6 +142,7 @@ components:
     NewPet:
       required:
         - name
+        - custom_date
       properties:
         name:
           type: string
@@ -149,6 +150,9 @@ components:
         tag:
           type: string
           description: Type of the pet
+        custom_date:
+          type: string
+          x-go-type: CustomDate
 
     Error:
       required:

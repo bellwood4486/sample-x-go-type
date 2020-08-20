@@ -22,6 +22,7 @@ type Error struct {
 
 // NewPet defines model for NewPet.
 type NewPet struct {
+	CustomDate CustomDate `json:"custom_date"`
 
 	// Name of the pet
 	Name string `json:"name"`
